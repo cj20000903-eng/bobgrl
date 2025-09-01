@@ -7,20 +7,20 @@
 <style>
   /* --- Global --- */
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:'Segoe UI',sans-serif; background:#0b0c17; color:#f0f0f5; overflow-x:hidden; line-height:1.6; }
-  a { color:#4fc3f7; text-decoration:none; } a:hover {text-decoration:underline;}
+  body { font-family:'Segoe UI',sans-serif; background:#0b0c17; color:#e0e0e0; overflow-x:hidden; line-height:1.6; }
+  a { color:#ffa500; text-decoration:none; } a:hover {text-decoration:underline;}
   header { padding:1rem 2rem; background:rgba(15,17,31,0.95); display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:1000;}
-  header h1 {color:#4fc3f7;}
+  header h1 {color:#ffa500;}
   nav a {margin-left:1rem; font-weight:bold;}
   main {max-width:1200px; margin:auto; padding:2rem; position:relative; z-index:2;}
   section {margin-bottom:4rem;}
-  h2 {color:#4fc3f7; margin-bottom:1rem;}
+  h2 {color:#ffa500; margin-bottom:1rem;}
   p {margin-bottom:1rem;}
-  button {background:#4fc3f7;color:#0b0c17;border:none;padding:0.6rem 1.2rem;font-size:1rem;border-radius:5px;cursor:pointer; transition:0.3s;}
-  button:hover {background:#38b0e0;}
-  input[type=number] {padding:0.5rem; width:100px; border-radius:5px; border:none; margin-left:0.5rem;}
+  button {background:#ffa500;color:#0b0c17;border:none;padding:0.6rem 1.2rem;font-size:1rem;border-radius:5px;cursor:pointer; transition:0.3s;}
+  button:hover {background:#e69500;}
+  input[type=number] {padding:0.5rem; width:120px; border-radius:5px; border:none; margin-left:0.5rem;}
   .progress-container {background:#1b1c2b;border-radius:10px;overflow:hidden;height:25px;margin-top:1rem;}
-  .progress-bar {background:#4fc3f7;height:100%;width:0%;transition:width 0.5s; text-align:right;padding-right:5px;box-sizing:border-box;color:#0b0c17;font-weight:bold;}
+  .progress-bar {background:#ffa500;height:100%;width:25%; text-align:right;padding-right:5px;box-sizing:border-box;color:#0b0c17;font-weight:bold;}
   .timer { font-size:1.2rem; margin-top:0.5rem;}
   .faq-item { margin-bottom:1rem; }
   .faq-question { cursor:pointer;padding:0.5rem;background:#1b1c2b;border-radius:5px;}
@@ -33,8 +33,8 @@
   .whitepaper iframe { width:100%; height:600px; border:none; border-radius:10px; }
   /* --- Background animation --- */
   #stars { position:fixed; top:0; left:0; width:100%; height:100%; background:#0b0c17; z-index:0; overflow:hidden; }
-  .star { position:absolute; width:2px; height:2px; background:white; border-radius:50%; opacity:0.8; animation:twinkle 5s infinite alternate; }
-  @keyframes twinkle { from {opacity:0.2;} to {opacity:0.8;} }
+  .star { position:absolute; width:2px; height:2px; background:white; border-radius:50%; opacity:0.6; animation:twinkle 5s infinite alternate; }
+  @keyframes twinkle { from {opacity:0.2;} to {opacity:0.6;} }
 </style>
 </head>
 <body>
@@ -68,9 +68,9 @@
   </div>
 
   <div class="progress-container">
-    <div id="progress-bar" class="progress-bar" data-current="1200000">$1.2M</div>
+    <div id="progress-bar" class="progress-bar" data-current="1209342990">$1.21B</div>
   </div>
-  <p id="progress-text">Raised $1,200,000 of $4,000,000</p>
+  <p id="progress-text">Raised $1,209,342,990 of $4,000,000,000</p>
   <p class="timer" id="countdown"></p>
 </section>
 
@@ -80,7 +80,7 @@
   <div class="tokenomics">
     <div class="token-card">
       <h3>Total Supply</h3>
-      <p>1,000,000,000 BOBGRL</p>
+      <p>4,000,000,000 BOBGRL</p>
     </div>
     <div class="token-card">
       <h3>Burn on Sell</h3>
@@ -110,8 +110,8 @@
   <h2>Roadmap</h2>
   <div class="roadmap">
     <ul>
-      <li>April: Presale launched - $1.2M collected</li>
-      <li>Next 3 months: Continue presale to $4M</li>
+      <li>April: Presale launched - $1.2B collected</li>
+      <li>Next 3 months: Continue presale to $4B</li>
       <li>Token launch & exchange listing</li>
       <li>Community events & NFT collaborations</li>
       <li>Marketing campaigns & partnerships</li>
@@ -138,12 +138,16 @@
     <div class="faq-answer">Connect your Phantom wallet, enter an amount ≥ $10, and click Buy. Tokens are credited after a successful transaction.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-question">What is the max presale goal?</div>
-    <div class="faq-answer">The progress bar caps at $4M, but contributions beyond this are still accepted.</div>
+    <div class="faq-question">What wallets are supported?</div>
+    <div class="faq-answer">Currently Phantom Wallet is fully supported. Other Solana wallets may work but are not guaranteed.</div>
   </div>
   <div class="faq-item">
-    <div class="faq-question">Can I test this on Devnet?</div>
-    <div class="faq-answer">Yes, this page is preconfigured for Solana Devnet for safe testing.</div>
+    <div class="faq-question">Can I purchase from any country?</div>
+    <div class="faq-answer">Yes, unless restricted by local regulations. Always check your jurisdiction before participating.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">What happens if the presale goal is exceeded?</div>
+    <div class="faq-answer">All contributions are accepted. Tokens will be minted proportionally and liquidity adjusted accordingly.</div>
   </div>
 </section>
 
@@ -187,7 +191,13 @@ const getProvider=()=>{ if("solana" in window){ const p=window.solana; if(p.isPh
 provider=getProvider();
 
 // Connect wallet
-const connectWallet=async()=>{ if(!provider) return; try{ const resp=await provider.connect(); document.getElementById("wallet-address").textContent="Connected: "+resp.publicKey.toString(); } catch(e){ alert("Connection failed: "+e.message);}};
+const connectWallet=async()=>{
+  if(!provider) return;
+  try{
+    const resp=await provider.connect();
+    document.getElementById("wallet-address").textContent="Connected: "+resp.publicKey.toString();
+  } catch(e){ alert("Connection failed: "+e.message);}
+};
 
 // Buy tokens
 const buyTokens=async()=>{
@@ -195,62 +205,64 @@ const buyTokens=async()=>{
   const usd=parseFloat(document.getElementById("usd-amount").value);
   if(usd<10) return alert("Minimum $10");
 
-  const solAmount=usd*USD_TO_SOL;
+  const connection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com", "confirmed");
+  const fromPubkey = provider.publicKey;
+
+  // Check SOL balance first
+  const balance = await connection.getBalance(fromPubkey);
+  const solAmount = usd * USD_TO_SOL;
+  const lamportsToSend = solAmount * solanaWeb3.LAMPORTS_PER_SOL;
+
+  if(balance < lamportsToSend){
+    return alert(`Insufficient SOL balance. You have ${(balance/solanaWeb3.LAMPORTS_PER_SOL).toFixed(4)} SOL, need ${solAmount.toFixed(4)} SOL`);
+  }
+
   try{
-    const connection=new solanaWeb3.Connection("https://api.devnet.solana.com","confirmed");
-    const fromPubkey=provider.publicKey;
-    const toPubkey=new solanaWeb3.PublicKey(TREASURY);
-    const transaction=new solanaWeb3.Transaction().add(
+    const toPubkey = new solanaWeb3.PublicKey(TREASURY);
+    const { blockhash } = await connection.getRecentBlockhash();
+    const transaction = new solanaWeb3.Transaction().add(
       solanaWeb3.SystemProgram.transfer({
         fromPubkey,
         toPubkey,
-        lamports: solAmount*solanaWeb3.LAMPORTS_PER_SOL
+        lamports: lamportsToSend
       })
     );
-    const { blockhash }=await connection.getRecentBlockhash();
-    transaction.recentBlockhash=blockhash;
-    transaction.feePayer=fromPubkey;
+    transaction.recentBlockhash = blockhash;
+    transaction.feePayer = fromPubkey;
 
-    const signed=await provider.signTransaction(transaction);
-    const txid=await connection.sendRawTransaction(signed.serialize());
+    const signed = await provider.signTransaction(transaction);
+    const txid = await connection.sendRawTransaction(signed.serialize());
     await connection.confirmTransaction(txid);
 
     alert(`Purchase successful! TXID: ${txid}`);
-    updateProgress(usd);
-  } catch(e){ console.error(e); alert("Transaction failed: "+e.message);}
-};
-
-// Update progress bar
-const updateProgress=(usdAmount)=>{
-  let bar=document.getElementById("progress-bar");
-  let text=document.getElementById("progress-text");
-  let current=parseFloat(bar.getAttribute("data-current"));
-  let newAmount=current+usdAmount;
-  if(newAmount>4000000) newAmount=4000000;
-  bar.setAttribute("data-current",newAmount);
-  const width=(newAmount/4000000)*100;
-  bar.style.width=width+"%";
-  bar.textContent="$"+(newAmount/1000000).toFixed(2)+"M";
-  text.textContent=`Raised $${newAmount.toLocaleString()} of $4,000,000`;
+  } catch(e){
+    console.error(e);
+    alert("Transaction failed: "+e.message);
+  }
 };
 
 // Countdown timer
-const endTime=new Date(); endTime.setMonth(endTime.getMonth()+3);
-const countdownEl=document.getElementById("countdown");
-const updateCountdown=()=>{
-  const now=new Date(); let diff=endTime-now;
+const endTime = new Date();
+endTime.setMonth(endTime.getMonth()+3);
+const countdownEl = document.getElementById("countdown");
+const updateCountdown = ()=>{
+  const now = new Date();
+  let diff = endTime - now;
   if(diff<0) diff=0;
-  const d=Math.floor(diff/(1000*60*60*24));
-  const h=Math.floor((diff/(1000*60*60))%24);
-  const m=Math.floor((diff/(1000*60))%60);
-  const s=Math.floor((diff/1000)%60);
-  countdownEl.textContent=`Presale ends in: ${d}d ${h}h ${m}m ${s}s`;
+  const d = Math.floor(diff/(1000*60*60*24));
+  const h = Math.floor((diff/(1000*60*60))%24);
+  const m = Math.floor((diff/(1000*60))%60);
+  const s = Math.floor((diff/1000)%60);
+  countdownEl.textContent = `Presale ends in: ${d}d ${h}h ${m}m ${s}s`;
 };
 setInterval(updateCountdown,1000); updateCountdown();
 
 // FAQ toggle
 document.querySelectorAll(".faq-question").forEach(q=>{
-  q.addEventListener("click",()=>{ const ans=q.nextElementSibling; ans.style.display=(ans.style.display==="block"?"none":"block"); });
+  q.addEventListener("click",()=>{
+    const ans=q.nextElementSibling;
+    ans.style.display=(ans.style.display==="block"?"none":"block");
+  });
 });
 
 // Event listeners
