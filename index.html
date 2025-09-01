@@ -5,92 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOBGRL Presale</title>
 <style>
-  /* --- Global Styles --- */
   body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #0b0c17;
-    color: #f0f0f5;
-    line-height: 1.6;
+    margin: 0; font-family:'Segoe UI',sans-serif;
+    background:#0b0c17; color:#f0f0f5; line-height:1.6;
   }
-  a { color: #4fc3f7; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
+  a { color:#4fc3f7; text-decoration:none;}
+  a:hover {text-decoration:underline;}
   header {
-    padding: 1rem 2rem;
-    background: #0f111f;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding:1rem 2rem; background:#0f111f;
+    display:flex; justify-content:space-between; align-items:center;
+    position:sticky; top:0; z-index:100;
   }
-
-  header h1 { margin:0; font-size:1.5rem; color:#4fc3f7;}
-  nav a { margin-left:1rem; font-weight:bold; }
-
-  main { padding:2rem; max-width: 900px; margin:auto; }
-
-  .section { margin-bottom:3rem; }
-  h2 { color:#4fc3f7; }
-
+  header h1 {margin:0;font-size:1.5rem;color:#4fc3f7;}
+  nav a {margin-left:1rem;font-weight:bold;}
+  main {padding:2rem; max-width:900px;margin:auto;}
+  .section {margin-bottom:3rem;}
+  h2 {color:#4fc3f7;}
   button {
-    background: #4fc3f7;
-    color:#0b0c17;
-    border:none;
-    padding:0.6rem 1.2rem;
-    font-size:1rem;
-    border-radius:5px;
-    cursor:pointer;
+    background:#4fc3f7;color:#0b0c17;border:none;
+    padding:0.6rem 1.2rem;font-size:1rem;border-radius:5px;cursor:pointer;
   }
-  button:hover { background:#38b0e0; }
-
-  /* --- Progress bar --- */
+  button:hover {background:#38b0e0;}
   .progress-container {
-    background: #1b1c2b;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 25px;
-    margin-top:1rem;
+    background:#1b1c2b;border-radius:10px;overflow:hidden;height:25px;margin-top:1rem;
   }
   .progress-bar {
-    background: #4fc3f7;
-    height: 100%;
-    width: 0%;
-    transition: width 0.5s;
-    text-align: right;
-    padding-right:5px;
-    box-sizing:border-box;
-    color:#0b0c17;
-    font-weight:bold;
+    background:#4fc3f7;height:100%;width:0%;transition:width 0.5s;
+    text-align:right;padding-right:5px;box-sizing:border-box;color:#0b0c17;font-weight:bold;
   }
-
-  /* --- Countdown timer --- */
-  .timer { font-size:1.2rem; margin-top:0.5rem; }
-
-  /* --- FAQ --- */
+  .timer { font-size:1.2rem; margin-top:0.5rem;}
   .faq-item { margin-bottom:1rem; }
-  .faq-question {
-    cursor:pointer;
-    padding:0.5rem;
-    background:#1b1c2b;
-    border-radius:5px;
-  }
+  .faq-question { cursor:pointer;padding:0.5rem;background:#1b1c2b;border-radius:5px;}
   .faq-answer { display:none; padding:0.5rem 1rem; }
-
-  /* --- Roadmap --- */
   .roadmap { background:#131424; padding:1rem; border-radius:10px; }
-
-  /* --- Background image placeholder --- */
-  body::before {
-    content:"";
-    position:fixed;
-    top:0; left:0; right:0; bottom:0;
-    background: url('') center/cover no-repeat;
-    opacity:0.05;
-    z-index:-1;
-  }
 </style>
 </head>
 <body>
@@ -105,56 +52,59 @@
 </header>
 
 <main>
-  <section id="presale" class="section">
-    <h2>Presale</h2>
-    <p>Connect your Phantom wallet to participate in the BOBGRL presale!</p>
-    <button id="connect-btn">Connect Phantom Wallet</button>
-    <p id="wallet-address" style="margin-top:0.5rem;"></p>
-    <div style="margin-top:1rem;">
-      <label>Purchase amount (USD, min $10): </label>
-      <input type="number" id="usd-amount" value="10" min="10" step="1"/>
-      <button id="buy-btn">Buy BOBGRL</button>
-    </div>
+<section id="presale" class="section">
+  <h2>Presale</h2>
+  <p>Connect your Phantom wallet to participate in the BOBGRL presale!</p>
+  <button id="connect-btn">Connect Phantom Wallet</button>
+  <p id="wallet-address" style="margin-top:0.5rem;"></p>
 
-    <div class="progress-container">
-      <div id="progress-bar" class="progress-bar">1.2M</div>
-    </div>
-    <p id="progress-text">Raised $1,200,000 of $3,800,000</p>
-    <p class="timer" id="countdown"></p>
-  </section>
+  <div style="margin-top:1rem;">
+    <label>Purchase amount (USD, min $10): </label>
+    <input type="number" id="usd-amount" value="10" min="10" step="1"/>
+    <button id="buy-btn">Buy BOBGRL</button>
+  </div>
 
-  <section id="roadmap" class="section">
-    <h2>Roadmap</h2>
-    <div class="roadmap">
-      <ul>
-        <li>April: Presale launched - $1.2M collected</li>
-        <li>Next 3 months: Continue presale to $3.8M</li>
-        <li>Token launch & exchange listing</li>
-        <li>Community events & NFT collaborations</li>
-      </ul>
-    </div>
-  </section>
+  <div class="progress-container">
+    <div id="progress-bar" class="progress-bar" data-current="1200000">$1.2M</div>
+  </div>
+  <p id="progress-text">Raised $1,200,000 of $4,000,000</p>
+  <p class="timer" id="countdown"></p>
+</section>
 
-  <section id="faq" class="section">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <div class="faq-question">What is BOBGRL?</div>
-      <div class="faq-answer">BOBGRL is a deflationary meme coin designed to reward holders while burning tokens on sales.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">How do I participate in the presale?</div>
-      <div class="faq-answer">Connect your Phantom wallet, enter an amount ≥ $10, and click Buy. Tokens will be credited virtually until the official launch.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question">What is the max presale goal?</div>
-      <div class="faq-answer">The progress bar caps at $3.8M, but contributions beyond this are still accepted.</div>
-    </div>
-  </section>
+<section id="roadmap" class="section">
+  <h2>Roadmap</h2>
+  <div class="roadmap">
+    <ul>
+      <li>April: Presale launched - $1.2M collected</li>
+      <li>Next 3 months: Continue presale to $4M</li>
+      <li>Token launch & exchange listing</li>
+      <li>Community events & NFT collaborations</li>
+    </ul>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <h2>FAQ</h2>
+  <div class="faq-item">
+    <div class="faq-question">What is BOBGRL?</div>
+    <div class="faq-answer">BOBGRL is a deflationary meme coin designed to reward holders while burning tokens on sales.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">How do I participate in the presale?</div>
+    <div class="faq-answer">Connect your Phantom wallet, enter an amount ≥ $10, and click Buy. Tokens are credited virtually after successful transaction.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-question">What is the max presale goal?</div>
+    <div class="faq-answer">The progress bar caps at $4M, but contributions beyond this are still accepted.</div>
+  </div>
+</section>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
 <script>
 let provider = null;
+const TREASURY = "ERGRYbUdR2ARJ5LapoztQzHt5qQPtfxuKsT23q3U7Aju";
+const USD_TO_SOL = 0.02; // example static rate: $1 = 0.02 SOL
 
 // Detect Phantom wallet
 const getProvider = () => {
@@ -166,66 +116,93 @@ const getProvider = () => {
 };
 provider = getProvider();
 
-// Wallet connect
+// Connect wallet
 const connectWallet = async () => {
+  if(!provider) return;
   try {
-    if (!provider) return;
     const resp = await provider.connect();
     document.getElementById("wallet-address").textContent = "Connected: " + resp.publicKey.toString();
-    console.log("Connected:", resp.publicKey.toString());
-  } catch (err) {
-    console.error("Connection failed:", err);
-    alert("Could not connect to wallet: " + err.message);
+  } catch(e) {
+    alert("Connection failed: "+e.message);
   }
 };
 
-// Buy button (pseudo buy for now)
-const buyTokens = () => {
-  const usdAmount = parseFloat(document.getElementById("usd-amount").value);
-  if (usdAmount < 10) return alert("Minimum purchase is $10");
-  // Simulate token credit
-  alert(`Successfully contributed $${usdAmount}! Tokens credited virtually.`);
-  // Update progress bar
+// Buy button functionality
+const buyTokens = async () => {
+  if(!provider || !provider.isConnected) return alert("Please connect your wallet first.");
+  const usd = parseFloat(document.getElementById("usd-amount").value);
+  if(usd < 10) return alert("Minimum purchase is $10");
+
+  const solAmount = usd * USD_TO_SOL;
+  try {
+    const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl("mainnet-beta"), "confirmed");
+    const fromPubkey = provider.publicKey;
+    const toPubkey = new solanaWeb3.PublicKey(TREASURY);
+    const transaction = new solanaWeb3.Transaction().add(
+      solanaWeb3.SystemProgram.transfer({
+        fromPubkey,
+        toPubkey,
+        lamports: solAmount * solanaWeb3.LAMPORTS_PER_SOL
+      })
+    );
+    const { blockhash } = await connection.getRecentBlockhash();
+    transaction.recentBlockhash = blockhash;
+    transaction.feePayer = fromPubkey;
+
+    const signed = await provider.signTransaction(transaction);
+    const txid = await connection.sendRawTransaction(signed.serialize());
+    await connection.confirmTransaction(txid);
+
+    alert(`Purchase successful! Transaction ID: ${txid}`);
+    // Update virtual holdings (example 1:1 for USD to tokens)
+    updateProgress(usd);
+  } catch(e) {
+    console.error(e);
+    alert("Transaction failed: "+e.message);
+  }
+};
+
+const updateProgress = (usdAmount) => {
   let progressBar = document.getElementById("progress-bar");
   let progressText = document.getElementById("progress-text");
-  let current = parseFloat(progressBar.getAttribute("data-current") || 1200000);
+  let current = parseFloat(progressBar.getAttribute("data-current"));
   let newAmount = current + usdAmount;
-  if(newAmount > 3800000) newAmount = 3800000;
+  if(newAmount>4000000) newAmount=4000000;
   progressBar.setAttribute("data-current", newAmount);
-  progressBar.style.width = ((newAmount/3800000)*100) + "%";
-  progressBar.textContent = "$" + (newAmount/1000000).toFixed(1) + "M";
-  progressText.textContent = `Raised $${newAmount.toLocaleString()} of $3,800,000`;
+  const widthPercent = (newAmount/4000000)*100;
+  progressBar.style.width = widthPercent+"%";
+  progressBar.textContent = "$"+(newAmount/1000000).toFixed(2)+"M";
+  progressText.textContent = `Raised $${newAmount.toLocaleString()} of $4,000,000`;
 };
 
 // Countdown timer
 const endTime = new Date();
-endTime.setMonth(endTime.getMonth()+3); // 3 months from now
+endTime.setMonth(endTime.getMonth()+3);
 const countdownEl = document.getElementById("countdown");
 const updateCountdown = () => {
   const now = new Date();
   let diff = endTime - now;
-  if(diff < 0) diff = 0;
-  const d = Math.floor(diff/(1000*60*60*24));
-  const h = Math.floor((diff/(1000*60*60))%24);
-  const m = Math.floor((diff/(1000*60))%60);
-  const s = Math.floor((diff/1000)%60);
+  if(diff<0) diff=0;
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor((diff/(1000*60*60))%24);
+  const m=Math.floor((diff/(1000*60))%60);
+  const s=Math.floor((diff/1000)%60);
   countdownEl.textContent = `Presale ends in: ${d}d ${h}h ${m}m ${s}s`;
 };
-setInterval(updateCountdown, 1000);
+setInterval(updateCountdown,1000);
 updateCountdown();
 
 // FAQ toggle
-document.querySelectorAll(".faq-question").forEach(q => {
-  q.addEventListener("click", () => {
-    const ans = q.nextElementSibling;
-    ans.style.display = ans.style.display==="block"?"none":"block";
+document.querySelectorAll(".faq-question").forEach(q=>{
+  q.addEventListener("click",()=>{
+    const ans=q.nextElementSibling;
+    ans.style.display=ans.style.display==="block"?"none":"block";
   });
 });
 
-// Attach button handlers
-window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("connect-btn").addEventListener("click", connectWallet);
-  document.getElementById("buy-btn").addEventListener("click", buyTokens);
+window.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("connect-btn").addEventListener("click",connectWallet);
+  document.getElementById("buy-btn").addEventListener("click",buyTokens);
 });
 </script>
 
