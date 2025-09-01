@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>BOBGRL Presale</title>
+
+<!-- Solana web3 -->
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+
 <style>
   /* --- Global --- */
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { font-family:'Segoe UI',sans-serif; background:#0b0c17; color:#e0e0e0; overflow-x:hidden; line-height:1.6; }
-  a { color:#ffa500; text-decoration:none; } a:hover {text-decoration:underline;}
-  header { padding:1rem 2rem; background:rgba(15,17,31,0.95); display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:1000;}
-  header h1 {color:#ffa500;}
-  nav a {margin-left:1rem; font-weight:bold;}
-  main {max-width:1200px; margin:auto; padding:2rem; position:relative; z-index:2;}
-  section {margin-bottom:4rem;}
-  h2 {color:#ffa500; margin-bottom:1rem;}
-  p {margin-bottom:1rem;}
-  button {background:#ffa500;color:#0b0c17;border:none;padding:0.6rem 1.2rem;font-size:1rem;border-radius:5px;cursor:pointer; transition:0.3s;}
-  button:hover {background:#e69500;}
-  input[type=number] {padding:0.5rem; width:120px; border-radius:5px; border:none; margin-left:0.5rem;}
-  .progress-container {background:#1b1c2b;border-radius:10px;overflow:hidden;height:25px;margin-top:1rem;}
-  .progress-bar {background:#ffa500;height:100%;width:25%; text-align:right;padding-right:5px;box-sizing:border-box;color:#0b0c17;font-weight:bold;}
-  .timer { font-size:1.2rem; margin-top:0.5rem;}
-  .faq-item { margin-bottom:1rem; }
-  .faq-question { cursor:pointer;padding:0.5rem;background:#1b1c2b;border-radius:5px;}
-  .faq-answer { display:none; padding:0.5rem 1rem; background:#131424; border-radius:5px; margin-top:0.3rem;}
-  .roadmap { background:#131424; padding:1rem; border-radius:10px; }
-  .tokenomics { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
-  .token-card { background:#1b1c2b; padding:1rem; border-radius:10px; text-align:center; }
-  .team { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1rem; }
-  .team-member { background:#1b1c2b; padding:1rem; border-radius:10px; text-align:center; }
-  .whitepaper iframe { width:100%; height:600px; border:none; border-radius:10px; }
-  /* --- Background animation --- */
-  #stars { position:fixed; top:0; left:0; width:100%; height:100%; background:#0b0c17; z-index:0; overflow:hidden; }
-  .star { position:absolute; width:2px; height:2px; background:white; border-radius:50%; opacity:0.6; animation:twinkle 5s infinite alternate; }
-  @keyframes twinkle { from {opacity:0.2;} to {opacity:0.6;} }
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html,body { height:100%; }
+  body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; background:#0b0c17; color:#e6e7ee; line-height:1.5; overflow-x:hidden; }
+
+  /* Header / Nav */
+  header { position:sticky; top:0; z-index:1000; background:rgba(12,13,22,0.95); display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid rgba(255,111,60,0.06); }
+  header h1 { color:#ff6f3c; font-size:1.2rem; letter-spacing:0.6px; }
+  nav a { color:#dfe3e8; text-decoration:none; margin-left:1rem; font-weight:600; font-size:0.95rem; }
+  nav a:hover { color:#ffb07f; }
+
+  /* Layout */
+  main { max-width:1200px; margin:2rem auto; padding:1rem; position:relative; z-index:2; }
+  section { margin-bottom:2.5rem; }
+  h2 { color:#ff6f3c; margin-bottom:0.75rem; }
+  p { margin-bottom:0.75rem; }
+
+  /* Cards & grids */
+  .card { background:#141522; padding:1.2rem; border-radius:12px; border:1px solid rgba(255,255,255,0.03); }
+  .grid { display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+
+  /* Buttons and inputs */
+  .btn { background:#ff6f3c; color:#0b0c17; border:none; padding:0.6rem 1rem; border-radius:8px; cursor:pointer; font-weight:700; }
+  .btn:hover { background:#e85e2c; }
+  input[type="number"], input[type="text"] { padding:0.6rem; border-radius:8px; border:none; background:#0f1220; color:#fff; width:160px; }
+  label { display:block; font-size:0.9rem; margin-bottom:6px; color:#cfd6df; }
+
+  /* Progress */
+  .progress-container { background:#0f1220; border-radius:10px; overflow:hidden; height:28px; border:1px solid rgba(255,255,255,0.03); margin-top:10px; }
+  .progress-bar { height:100%; width:25%; background:linear-gradient(90deg,#ff6f3c,#ff9a6f); display:flex; align-items:center; justify-content:flex-end; padding-right:8px; color:#0b0c17; font-weight:800; transition:width 0.7s ease; }
+
+  /* Starfield */
+  #stars { position:fixed; inset:0; z-index:0; background:linear-gradient(#06060b,#0b0c17); overflow:hidden; }
+  .star { position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; opacity:0.7; animation:twinkle 4s infinite alternate; }
+  @keyframes twinkle { from {opacity:0.15;} to {opacity:0.7;} }
+
+  /* FAQ */
+  .faq-question { padding:0.6rem; background:#0f1220; border-radius:8px; cursor:pointer; font-weight:700; }
+  .faq-answer { display:none; padding:0.6rem; margin-top:6px; background:#0e1119; border-radius:8px; }
+
+  /* Misc */
+  .small { font-size:0.9rem; color:#c8cdd6; }
+  .muted { color:#9aa3b2; font-size:0.9rem; }
+  .addr { font-family:monospace; font-size:0.9rem; color:#bcd; word-break:break-all; }
+  footer { text-align:center; padding:1.2rem; color:#9aa3b2; font-size:0.9rem; }
+  a.link { color:#ffd6bc; text-decoration:underline; }
 </style>
 </head>
 <body>
 
-<div id="stars"></div>
+<div id="stars" aria-hidden="true"></div>
 
 <header>
   <h1>BOBGRL</h1>
@@ -49,227 +69,501 @@
     <a href="#roadmap">Roadmap</a>
     <a href="#whitepaper">Whitepaper</a>
     <a href="#faq">FAQ</a>
-    <a href="#team">Team</a>
   </nav>
 </header>
 
 <main>
-<!-- --- Presale --- -->
-<section id="presale">
-  <h2>Presale</h2>
-  <p>Connect your Phantom wallet to participate in the BOBGRL presale!</p>
-  <button id="connect-btn">Connect Phantom Wallet</button>
-  <p id="wallet-address"></p>
+  <!-- PRESALE -->
+  <section id="presale">
+    <div class="card">
+      <div style="display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;">
+        <div>
+          <h2>Presale</h2>
+          <p class="small">Connect Phantom, enter USD (min $10), and click Buy. The wallet popup will show the exact SOL amount. Progress bar is static at first and only updates after confirmed contributions.</p>
+          <p class="muted">Receiving Address:</p>
+          <div class="addr">9V85j5X27tF46h7c4pRc9k4on7cM6C5bX8TuNQxVuHcD</div>
+        </div>
 
-  <div style="margin-top:1rem;">
-    <label>Purchase amount (USD, min $10): </label>
-    <input type="number" id="usd-amount" value="10" min="10" step="1"/>
-    <button id="buy-btn">Buy BOBGRL</button>
-  </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;">
+          <button id="connect-btn" class="btn">Connect Phantom</button>
+          <button id="env-btn" class="btn" title="Toggle Devnet/Mainnet">Use: <span id="env-label">Mainnet</span></button>
+        </div>
+      </div>
 
-  <div class="progress-container">
-    <div id="progress-bar" class="progress-bar" data-current="1209342990">$1.21B</div>
-  </div>
-  <p id="progress-text">Raised $1,209,342,990 of $4,000,000,000</p>
-  <p class="timer" id="countdown"></p>
-</section>
+      <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.02)">
 
-<!-- --- Tokenomics --- -->
-<section id="tokenomics">
-  <h2>Tokenomics</h2>
-  <div class="tokenomics">
-    <div class="token-card">
-      <h3>Total Supply</h3>
-      <p>4,000,000,000 BOBGRL</p>
-    </div>
-    <div class="token-card">
-      <h3>Burn on Sell</h3>
-      <p>50%</p>
-    </div>
-    <div class="token-card">
-      <h3>Liquidity Tax</h3>
-      <p>2%</p>
-    </div>
-    <div class="token-card">
-      <h3>Max Wallet</h3>
-      <p>2% of supply</p>
-    </div>
-    <div class="token-card">
-      <h3>Presale Price</h3>
-      <p>$0.01 / BOBGRL</p>
-    </div>
-    <div class="token-card">
-      <h3>Deflationary</h3>
-      <p>Yes, tokens decrease on sales</p>
-    </div>
-  </div>
-</section>
+      <div class="grid">
+        <div class="card">
+          <label for="usd-amount">Purchase amount (USD) — min $10</label>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <input id="usd-amount" type="number" min="10" step="1" value="10" />
+            <button id="buy-btn" class="btn">Buy BOBGRL</button>
+          </div>
+          <div style="margin-top:10px;">
+            <div class="small">Estimated SOL (computed): <span id="estimated-sol">0.20</span> SOL</div>
+            <div class="small">You will receive (est): <span id="estimated-tokens">1000</span> BOBGRL</div>
+          </div>
+          <p id="status" class="small muted" style="margin-top:10px;">Status: idle</p>
+        </div>
 
-<!-- --- Roadmap --- -->
-<section id="roadmap">
-  <h2>Roadmap</h2>
-  <div class="roadmap">
-    <ul>
-      <li>April: Presale launched - $1.2B collected</li>
-      <li>Next 3 months: Continue presale to $4B</li>
-      <li>Token launch & exchange listing</li>
-      <li>Community events & NFT collaborations</li>
-      <li>Marketing campaigns & partnerships</li>
-    </ul>
-  </div>
-</section>
+        <div class="card">
+          <h3>Progress</h3>
+          <div class="small">Raised <strong id="progress-text">$1,209,342,990</strong> of $4,000,000,000</div>
+          <div class="progress-container" aria-hidden="true" style="margin-top:10px;">
+            <!-- width intentionally set to 25% (quarter full) but underlying numbers reflect $1,209,342,990 -->
+            <div id="progress-bar" class="progress-bar" data-current="1209342990" style="width:25%;">25%</div>
+          </div>
+          <div style="margin-top:10px;" class="muted small">Goal progress shown as quarter-full for UI — contributions will update it after confirmation.</div>
+        </div>
 
-<!-- --- Whitepaper --- -->
-<section id="whitepaper">
-  <h2>Whitepaper</h2>
-  <p>Read the full whitepaper below:</p>
-  <iframe src="https://example.com/whitepaper.pdf"></iframe>
-</section>
-
-<!-- --- FAQ --- -->
-<section id="faq">
-  <h2>FAQ</h2>
-  <div class="faq-item">
-    <div class="faq-question">What is BOBGRL?</div>
-    <div class="faq-answer">BOBGRL is a deflationary meme coin designed to reward holders while burning tokens on sales.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-question">How do I participate in the presale?</div>
-    <div class="faq-answer">Connect your Phantom wallet, enter an amount ≥ $10, and click Buy. Tokens are credited after a successful transaction.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-question">What wallets are supported?</div>
-    <div class="faq-answer">Currently Phantom Wallet is fully supported. Other Solana wallets may work but are not guaranteed.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-question">Can I purchase from any country?</div>
-    <div class="faq-answer">Yes, unless restricted by local regulations. Always check your jurisdiction before participating.</div>
-  </div>
-  <div class="faq-item">
-    <div class="faq-question">What happens if the presale goal is exceeded?</div>
-    <div class="faq-answer">All contributions are accepted. Tokens will be minted proportionally and liquidity adjusted accordingly.</div>
-  </div>
-</section>
-
-<!-- --- Team --- -->
-<section id="team">
-  <h2>Team</h2>
-  <div class="team">
-    <div class="team-member">
-      <h3>Charles Copeland</h3>
-      <p>Founder & Developer</p>
+        <div class="card">
+          <h3>Wallet & Holdings</h3>
+          <p class="small">Connected wallet: <span id="wallet-address" class="addr">Not connected</span></p>
+          <p class="small">SOL balance: <span id="wallet-balance">—</span></p>
+          <p class="small">Presale BOBGRL credited (local): <strong id="local-holdings">0</strong> BOBGRL</p>
+          <p class="small">Presale price: <strong>$0.01</strong> per BOBGRL</p>
+        </div>
+      </div>
     </div>
-    <div class="team-member">
-      <h3>Jane Doe</h3>
-      <p>Marketing Lead</p>
+  </section>
+
+  <!-- TOKENOMICS -->
+  <section id="tokenomics">
+    <h2>Tokenomics</h2>
+    <div class="card grid">
+      <div>
+        <h3>Total Supply</h3>
+        <p class="muted">4,000,000,000 BOBGRL</p>
+      </div>
+      <div>
+        <h3>Burn on Sell</h3>
+        <p class="muted">50%</p>
+      </div>
+      <div>
+        <h3>Liquidity Tax</h3>
+        <p class="muted">2%</p>
+      </div>
+      <div>
+        <h3>Max Wallet</h3>
+        <p class="muted">2% of supply</p>
+      </div>
+      <div>
+        <h3>Presale Price</h3>
+        <p class="muted">$0.01 / BOBGRL</p>
+      </div>
+      <div>
+        <h3>Deflationary</h3>
+        <p class="muted">Yes — tokens decrease on sells</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <h2>Roadmap</h2>
+    <div class="card">
+      <ul class="muted">
+        <li>Phase 1 — Presale + Website + Whitepaper</li>
+        <li>Phase 2 — Token launch, DEX listing, liquidity lock</li>
+        <li>Phase 3 — Marketing campaigns, NFT drops, partnerships</li>
+        <li>Phase 4 — DAO / governance, cross-chain expansion</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- WHITEPAPER -->
+  <section id="whitepaper">
+    <h2>Whitepaper</h2>
+    <div class="card" style="line-height:1.7;">
+      <h3>1. Introduction</h3>
+      <p>BOBGRL is a deflationary Solana-based token designed to combine meme culture with sustainable tokenomics. Our mission is to provide a fun, community-driven asset while ensuring long-term value through automatic burn mechanics and liquidity growth.</p>
+
+      <h3>2. Problem</h3>
+      <p>Many meme tokens rely on hype without built-in sustainable mechanics. This can result in rapid price crashes and loss of investor trust.</p>
+
+      <h3>3. Solution</h3>
+      <p>BOBGRL embeds deflationary and liquidity mechanics at the contract level: a 50% burn on sells to reduce supply, and a 2% liquidity tax that strengthens LP over time.</p>
+
+      <h3>4. Tokenomics</h3>
+      <ul>
+        <li>Total Supply: 4,000,000,000 BOBGRL</li>
+        <li>Presale Price: $0.01</li>
+        <li>Burn on Sell: 50%</li>
+        <li>Liquidity Tax: 2%</li>
+        <li>Max Wallet: 2% of total supply</li>
+      </ul>
+
+      <h3>5. Roadmap</h3>
+      <ul>
+        <li>Phase 1 — Presale, Website, Whitepaper</li>
+        <li>Phase 2 — Token generation event, initial exchange(s)</li>
+        <li>Phase 3 — Marketing, partnerships, NFT collaborations</li>
+        <li>Phase 4 — DAO, staking, cross-chain development</li>
+      </ul>
+
+      <h3>6. Utility & Governance</h3>
+      <p>BOBGRL will expand into NFT utilities, staking rewards, and community governance driven by token holders.</p>
+
+      <h3>7. Security</h3>
+      <p>Smart contracts should be audited prior to mainnet deployment. Liquidity lock and transparent ownership are recommended to protect users.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div class="card">
+      <div class="faq-item">
+        <div class="faq-question">How do I participate?</div>
+        <div class="faq-answer">Connect Phantom, enter USD (minimum $10), click Buy, confirm the Phantom popup. After confirmation your contribution will be shown and tokens credited locally.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Which networks can I use?</div>
+        <div class="faq-answer">You can test on Devnet (use the toggle in the header). For real contributions use Mainnet. The environment button toggles RPCs.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Where do funds go?</div>
+        <div class="faq-answer">All SOL contributed go directly to the receiving address shown in the Presale section.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How are tokens distributed?</div>
+        <div class="faq-answer">Tokens are calculated at $0.01 per token. The site displays an estimated token amount before purchase and updates holdings after confirmation.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">What if my transaction fails?</div>
+        <div class="faq-answer">You will see an error in the status area. Common causes: insufficient SOL balance or network/RPC issues. You can switch to Devnet for testing.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team">
+    <h2>Team</h2>
+    <div class="card grid">
+      <div>
+        <h3>Charles Copeland</h3>
+        <p class="muted">Founder & Developer</p>
+      </div>
+      <div>
+        <h3>Jane Doe</h3>
+        <p class="muted">Marketing</p>
+      </div>
+    </div>
+  </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/lib/index.iife.min.js"></script>
-<script>
-let provider = null;
-const TREASURY = "ERGRYbUdR2ARJ5LapoztQzHt5qQPtfxuKsT23q3U7Aju";
-const USD_TO_SOL = 0.02;
+<footer>© 2025 BOBGRL Project — Presale UI</footer>
 
-// Generate animated stars
-const starCount=100;
-const starsContainer=document.getElementById("stars");
-for(let i=0;i<starCount;i++){
-  const star=document.createElement("div");
-  star.classList.add("star");
-  star.style.top=Math.random()*100+"%";
-  star.style.left=Math.random()*100+"%";
-  star.style.width=star.style.height=(Math.random()*2+1)+"px";
-  star.style.animationDuration=(Math.random()*5+3)+"s";
-  starsContainer.appendChild(star);
+<script>
+/* --------------------------
+   Configuration / constants
+   -------------------------- */
+const TREASURY_ADDRESS = "9V85j5X27tF46h7c4pRc9k4on7cM6C5bX8TuNQxVuHcD"; // your receiving address (hard-coded)
+const GOAL_USD = 4_000_000_000; // presale goal displayed
+const START_CURRENT_USD = 1_209_342_990; // starting raised amount (displayed)
+const PRESALE_PRICE_USD = 0.01; // price per token
+const USD_TO_SOL = 0.02; // conversion used for estimating SOL (1 USD = 0.02 SOL) - adjust as needed
+const MIN_USD = 10; // minimum contribution
+let CURRENT_RPC = "https://api.mainnet-beta.solana.com"; // default environment
+let ENV = "mainnet"; // 'mainnet' or 'devnet'
+
+/* --------------------------
+   Utilities & UI references
+   -------------------------- */
+const provider = { instance: null }; // will hold phantom provider
+const progressBar = document.getElementById("progress-bar");
+const progressText = document.getElementById("progress-text");
+const statusEl = document.getElementById("status");
+const walletAddressEl = document.getElementById("wallet-address");
+const walletBalanceEl = document.getElementById("wallet-balance");
+const localHoldingsEl = document.getElementById("local-holdings");
+const estimatedSolEl = document.getElementById("estimated-sol");
+const estimatedTokensEl = document.getElementById("estimated-tokens");
+const envLabelEl = document.getElementById("env-label");
+const connectBtn = document.getElementById("connect-btn");
+const buyBtn = document.getElementById("buy-btn");
+const usdInput = document.getElementById("usd-amount");
+
+/* --------------------------
+   Starfield generation
+   -------------------------- */
+(function generateStars() {
+  const starsContainer = document.getElementById("stars");
+  const starCount = 120;
+  for (let i = 0; i < starCount; i++) {
+    const s = document.createElement("div");
+    s.className = "star";
+    s.style.left = Math.random() * 100 + "%";
+    s.style.top = Math.random() * 100 + "%";
+    const size = Math.random() * 2 + 0.8;
+    s.style.width = size + "px";
+    s.style.height = size + "px";
+    s.style.animationDuration = (Math.random() * 4 + 3) + "s";
+    starsContainer.appendChild(s);
+  }
+})();
+
+/* --------------------------
+   Provider detection
+   -------------------------- */
+function getProvider() {
+  if ("solana" in window && window.solana.isPhantom) {
+    return window.solana;
+  }
+  return null;
 }
 
-// Phantom wallet detection
-const getProvider=()=>{ if("solana" in window){ const p=window.solana; if(p.isPhantom) return p; } alert("Phantom Wallet not found!"); };
-provider=getProvider();
+/* --------------------------
+   Update displayed estimates
+   -------------------------- */
+function updateEstimates() {
+  const usd = parseFloat(usdInput.value) || 0;
+  const sol = +(usd * USD_TO_SOL).toFixed(6);
+  const tokens = Math.floor(usd / PRESALE_PRICE_USD);
+  estimatedSolEl.textContent = sol;
+  estimatedTokensEl.textContent = tokens.toLocaleString();
+}
+usdInput.addEventListener("input", updateEstimates);
+updateEstimates();
 
-// Connect wallet
-const connectWallet=async()=>{
-  if(!provider) return;
-  try{
-    const resp=await provider.connect();
-    document.getElementById("wallet-address").textContent="Connected: "+resp.publicKey.toString();
-  } catch(e){ alert("Connection failed: "+e.message);}
-};
+/* --------------------------
+   Environment toggle (Devnet/Mainnet)
+   -------------------------- */
+document.getElementById("env-btn").addEventListener("click", () => {
+  if (ENV === "mainnet") {
+    ENV = "devnet";
+    CURRENT_RPC = solanaWeb3.clusterApiUrl("devnet");
+    envLabelEl.textContent = "Devnet";
+    status("Switched to Devnet RPC (testing).");
+  } else {
+    ENV = "mainnet";
+    CURRENT_RPC = solanaWeb3.clusterApiUrl("mainnet-beta");
+    envLabelEl.textContent = "Mainnet";
+    status("Switched to Mainnet RPC.");
+  }
+});
 
-// Buy tokens
-const buyTokens=async()=>{
-  if(!provider||!provider.isConnected) return alert("Connect your wallet first.");
-  const usd=parseFloat(document.getElementById("usd-amount").value);
-  if(usd<10) return alert("Minimum $10");
+/* --------------------------
+   Connection & Balance
+   -------------------------- */
+async function connectWallet() {
+  const p = getProvider();
+  if (!p) {
+    alert("Phantom Wallet not found. Install Phantom to proceed.");
+    return;
+  }
+  try {
+    provider.instance = p;
+    const resp = await p.connect();
+    walletAddressEl.textContent = resp.publicKey.toString();
+    status("Wallet connected.");
+    await refreshBalance();
+  } catch (e) {
+    console.error(e);
+    status("Connection failed: " + (e.message || e));
+  }
+}
+connectBtn.addEventListener("click", connectWallet);
 
-  const connection = new solanaWeb3.Connection("https://api.mainnet-beta.solana.com", "confirmed");
-  const fromPubkey = provider.publicKey;
+async function refreshBalance() {
+  if (!provider.instance || !provider.instance.publicKey) return;
+  try {
+    const conn = new solanaWeb3.Connection(CURRENT_RPC, "confirmed");
+    const lamports = await conn.getBalance(provider.instance.publicKey);
+    const sol = lamports / solanaWeb3.LAMPORTS_PER_SOL;
+    walletBalanceEl.textContent = sol.toFixed(6) + " SOL";
+  } catch (e) {
+    walletBalanceEl.textContent = "—";
+    console.error("Balance fetch error", e);
+  }
+}
 
-  // Check SOL balance first
-  const balance = await connection.getBalance(fromPubkey);
-  const solAmount = usd * USD_TO_SOL;
-  const lamportsToSend = solAmount * solanaWeb3.LAMPORTS_PER_SOL;
+/* --------------------------
+   Progress update (only after confirmed tx)
+   -------------------------- */
+function updateProgress(usdAmount) {
+  // read current
+  let current = parseFloat(progressBar.getAttribute("data-current")) || START_CURRENT_USD;
+  let newAmount = current + usdAmount;
+  if (newAmount > GOAL_USD) newAmount = GOAL_USD;
+  progressBar.setAttribute("data-current", newAmount);
+  progressText.textContent = "$" + newAmount.toLocaleString() + " of $" + GOAL_USD.toLocaleString();
 
-  if(balance < lamportsToSend){
-    return alert(`Insufficient SOL balance. You have ${(balance/solanaWeb3.LAMPORTS_PER_SOL).toFixed(4)} SOL, need ${solAmount.toFixed(4)} SOL`);
+  // compute width from actual proportion
+  const widthPct = Math.min(100, (newAmount / GOAL_USD) * 100);
+  progressBar.style.width = widthPct + "%";
+  progressBar.textContent = Math.round(widthPct) + "%";
+}
+
+/* --------------------------
+   Status helper
+   -------------------------- */
+function status(msg) {
+  statusEl.textContent = "Status: " + msg;
+}
+
+/* --------------------------
+   Buy flow: USD -> SOL -> TX -> Confirm -> Update
+   -------------------------- */
+buyBtn.addEventListener("click", buyTokens);
+
+async function buyTokens() {
+  // Basic checks
+  const p = getProvider();
+  if (!p) {
+    alert("Phantom Wallet not found. Install Phantom to proceed.");
+    return;
+  }
+  provider.instance = p;
+
+  const usd = parseFloat(usdInput.value);
+  if (!usd || usd < MIN_USD) {
+    alert("Minimum contribution is $" + MIN_USD);
+    return;
   }
 
-  try{
-    const toPubkey = new solanaWeb3.PublicKey(TREASURY);
-    const { blockhash } = await connection.getRecentBlockhash();
-    const transaction = new solanaWeb3.Transaction().add(
+  const solAmount = usd * USD_TO_SOL;
+  const lamportsToSend = Math.round(solAmount * solanaWeb3.LAMPORTS_PER_SOL);
+
+  status("Preparing transaction...");
+
+  try {
+    // Connect (will pop Phantom if not already connected)
+    await provider.instance.connect();
+
+    // Create connection for current environment
+    const connection = new solanaWeb3.Connection(CURRENT_RPC, "confirmed");
+    await refreshBalance();
+
+    // Check balance
+    const balanceLamports = await connection.getBalance(provider.instance.publicKey);
+    const estimatedFeeLamports = 5000; // small buffer for fees (adjust if needed)
+    if (balanceLamports < lamportsToSend + estimatedFeeLamports) {
+      const haveSOL = (balanceLamports / solanaWeb3.LAMPORTS_PER_SOL).toFixed(6);
+      status("Insufficient SOL. You have " + haveSOL + " SOL, need " + solAmount.toFixed(6) + " SOL.");
+      alert("Insufficient SOL balance. Please fund your wallet and retry.");
+      return;
+    }
+
+    // Build transaction
+    const toPubkey = new solanaWeb3.PublicKey(TREASURY_ADDRESS);
+    const tx = new solanaWeb3.Transaction().add(
       solanaWeb3.SystemProgram.transfer({
-        fromPubkey,
+        fromPubkey: provider.instance.publicKey,
         toPubkey,
         lamports: lamportsToSend
       })
     );
-    transaction.recentBlockhash = blockhash;
-    transaction.feePayer = fromPubkey;
 
-    const signed = await provider.signTransaction(transaction);
+    tx.feePayer = provider.instance.publicKey;
+    const latest = await connection.getLatestBlockhash();
+    tx.recentBlockhash = latest.blockhash;
+
+    // Sign (Phantom will popup and show exact SOL amount)
+    status("Awaiting wallet signature...");
+    const signed = await provider.instance.signTransaction(tx);
+
+    // Send raw tx
+    status("Sending transaction...");
     const txid = await connection.sendRawTransaction(signed.serialize());
-    await connection.confirmTransaction(txid);
+    status("Transaction sent, awaiting confirmation...");
 
-    alert(`Purchase successful! TXID: ${txid}`);
-  } catch(e){
-    console.error(e);
-    alert("Transaction failed: "+e.message);
+    // Confirm (wait until confirmed)
+    await connection.confirmTransaction(txid, "confirmed");
+    status("Transaction confirmed! TXID: " + txid);
+
+    // Update UI: progress + holdings + solscan link
+    updateProgress(usd);
+
+    // Local holdings credit (approx)
+    const tokensReceived = Math.floor(usd / PRESALE_PRICE_USD);
+    const prevHoldings = parseInt(localHoldingsEl.textContent.replace(/,/g,'')) || 0;
+    const newHoldings = prevHoldings + tokensReceived;
+    localHoldingsEl.textContent = newHoldings.toLocaleString();
+
+    // Show solscan link
+    status("✅ Transaction confirmed. View: https://solscan.io/tx/" + txid + (ENV === "devnet" ? "?cluster=devnet" : ""));
+    const link = document.createElement("a");
+    link.href = "https://solscan.io/tx/" + txid + (ENV === "devnet" ? "?cluster=devnet" : "");
+    link.target = "_blank";
+    link.textContent = "View transaction on Solscan";
+    link.className = "link";
+    // append or replace
+    const s = document.getElementById("status");
+    s.innerHTML = "";
+    s.appendChild(document.createTextNode("Transaction confirmed. "));
+    s.appendChild(link);
+
+    // Refresh balance display
+    await refreshBalance();
+
+  } catch (err) {
+    console.error("Buy error:", err);
+    status("Transaction failed: " + (err.message || err));
+    alert("Transaction failed: " + (err.message || err));
   }
-};
+}
 
-// Countdown timer
-const endTime = new Date();
-endTime.setMonth(endTime.getMonth()+3);
-const countdownEl = document.getElementById("countdown");
-const updateCountdown = ()=>{
-  const now = new Date();
-  let diff = endTime - now;
-  if(diff<0) diff=0;
-  const d = Math.floor(diff/(1000*60*60*24));
-  const h = Math.floor((diff/(1000*60*60))%24);
-  const m = Math.floor((diff/(1000*60))%60);
-  const s = Math.floor((diff/1000)%60);
-  countdownEl.textContent = `Presale ends in: ${d}d ${h}h ${m}m ${s}s`;
-};
-setInterval(updateCountdown,1000); updateCountdown();
+/* --------------------------
+   Countdown timer (3 months default)
+   -------------------------- */
+(function startCountdown() {
+  const countdownEl = document.createElement("div");
+  countdownEl.style.marginTop = "10px";
+  countdownEl.className = "small muted";
+  document.querySelector("#presale .card").appendChild(countdownEl);
 
-// FAQ toggle
-document.querySelectorAll(".faq-question").forEach(q=>{
-  q.addEventListener("click",()=>{
-    const ans=q.nextElementSibling;
-    ans.style.display=(ans.style.display==="block"?"none":"block");
+  const endDate = new Date();
+  endDate.setMonth(endDate.getMonth() + 3);
+
+  function tick() {
+    const now = new Date();
+    let diff = endDate - now;
+    if (diff < 0) diff = 0;
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+    countdownEl.textContent = `Presale ends in: ${d}d ${h}h ${m}m ${s}s`;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* --------------------------
+   FAQ toggle behavior
+   -------------------------- */
+document.querySelectorAll(".faq-question").forEach(q => {
+  q.addEventListener("click", () => {
+    const a = q.nextElementSibling;
+    a.style.display = (a.style.display === "block") ? "none" : "block";
   });
 });
 
-// Event listeners
-window.addEventListener("DOMContentLoaded",()=>{
-  document.getElementById("connect-btn").addEventListener("click",connectWallet);
-  document.getElementById("buy-btn").addEventListener("click",buyTokens);
-});
+/* --------------------------
+   Initialize UI values
+   -------------------------- */
+(function initUI() {
+  // set current progress numbers in text from START_CURRENT_USD
+  progressBar.setAttribute("data-current", START_CURRENT_USD);
+  progressText.textContent = "$" + START_CURRENT_USD.toLocaleString() + " of $" + GOAL_USD.toLocaleString();
+  // progressBar.width already set to 25% in HTML to match "quarter full" UI preference
+  envLabelEl.textContent = ENV === "devnet" ? "Devnet" : "Mainnet";
+
+  // lazy provider attach if phantom already available
+  if (getProvider()) {
+    provider.instance = getProvider();
+    // if trusted, it might already be connected - try to set address
+    if (provider.instance.isConnected && provider.instance.publicKey) {
+      walletAddressEl.textContent = provider.instance.publicKey.toString();
+      refreshBalance();
+    }
+  }
+})();
 </script>
 </body>
 </html>
