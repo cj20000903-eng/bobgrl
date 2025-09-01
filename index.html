@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BOBGRL Presale (Phantom)</title>
+  <style>
+    body{font-family:Inter,system-ui,Arial,sans-serif;background:#0f1724;color:#e6eef8;margin:0;padding:0}
+    .wrap{max-width:1000px;margin:28px auto;padding:18px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;border-radius:12px;background:linear-gradient(90deg,#0b1220,#0f1724);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    header h1{margin:0;font-size:20px}
+    .card{background:#0b1220;border:1px solid #15202b;padding:18px;border-radius:12px;margin-top:18px}
+    label{display:block;color:#9fb0c8;margin-bottom:6px;font-size:14px}
+    input[type=number], input[type=text]{width:100%;padding:10px;border-radius:8px;border:1px solid #203040;background:#071021;color:#dbeefc;font-size:15px}
+    .row{display:flex;gap:10px;align-items:center;margin-top:10px}
+    .btn{background:#14f195;border:none;color:#042018;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .btn.secondary{background:#12232f;color:#9fb0c8}
+    .muted{color:#8ea6bf;font-size:14px}
+    .kpi{display:flex;gap:12px;margin-top:12px}
+    .kpi .box{background:#071824;padding:10px;border-radius:8px;border:1px solid #103044;min-width:110px;text-align:center}
+    .holdings{margin-top:14px;padding:12px;background:#071526;border-radius:8px;border:1px solid #102433}
+    footer{color:#7f9fb7;text-align:center;margin-top:28px;font-size:13px}
+    h2{color:#bfeee0}
+    pre{white-space:pre-wrap;font-size:13px}
+    .error{color:#ffb4b4}
+    .success{color:#bff7d0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>🐾 BOBGRL — Presale</h1>
+        <div class="muted">Fast • Fun • Community-first (Solana)</div>
+      </div>
+      <div class="muted">Minimum purchase: $1</div>
+    </header>
+
+    <div class="card" id="buyCard" aria-live="polite">
+      <h2>Buy BOBGRL (Phantom)</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <label for="usd">USD Amount (min $1)</label>
+          <input id="usd" type="number" min="1" step="0.01" placeholder="25.00" />
+        </div>
+        <div>
+          <label for="addr">Your Solana Address (optional — saves for airdrop)</label>
+          <input id="addr" type="text" placeholder="Eg. 9x... (will be saved locally)" />
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn" id="buyBtn">Buy with Phantom</button>
+        <button class="btn secondary" id="saveAddrBtn">Save Address Locally</button>
+        <div class="muted" id="priceInfo">Fetching SOL price...</div>
+      </div>
+
+      <div class="muted" id="conv" style="margin-top:8px">—</div>
+
+      <div class="kpi">
+        <div class="box"><div class="muted">Your Tokens</div><div id="holdTokens">0</div></div>
+        <div class="box"><div class="muted">Your USD</div><div id="holdUsd">$0.00</div></div>
+        <div class="box"><div class="muted">Your SOL</div><div id="holdSol">0</div></div>
+      </div>
+
+      <div class="holdings">
+        <div class="muted">Status:</div>
+        <div id="status">Ready</div>
+      </div>
+
+      <div style="margin-top:12px" class="muted">
+        Note: You must have Phantom installed and logged-in for the wallet popup to appear. This page only records virtual holdings locally after a confirmed on-chain transfer.
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>About & Tokenomics</h2>
+      <p class="muted">BOBGRL is a community meme token on Solana. Presale proceeds fund initial liquidity, marketing, and community initiatives.</p>
+      <pre class="muted">
+Total supply: 1,000,000,000 BOBGRL
+Presale allocation: 35%
+Liquidity: 30%
+Treasury/Operations: 15%
+Community rewards: 15%
+Team: 5% (locked)
+      </pre>
+    </section>
+
+    <section class="card">
+      <h2>Roadmap & Litepaper</h2>
+      <ol class="muted">
+        <li>Presale & Community Building</li>
+        <li>Token Deploy & Liquidity</li>
+        <li>Airdrop for presale participants</li>
+        <li>Exchange listings & growth</li>
+      </ol>
+      <p class="muted">Full whitepaper will be published prior to token deployment.</p>
+    </section>
+
+    <section class="card">
+      <h2>FAQ</h2>
+      <div class="muted">
+        <strong>Q:</strong> What is a meme coin?<br>
+        <strong>A:</strong> A token inspired by internet culture that builds value through community momentum and utility experiments.<br><br>
+
+        <strong>Q:</strong> How do I buy?<br>
+        <strong>A:</strong> Use Phantom wallet. Enter USD amount (≥ $1) and click "Buy with Phantom". Confirm the SOL transfer in Phantom when the popup appears.<br><br>
+
+        <strong>Q:</strong> When are tokens distributed?<br>
+        <strong>A:</strong> Tokens are distributed (airdropped) after token generation event (TGE). The exact mechanics and timing will be posted in the official launch announcement.<br><br>
+
+        <strong>Q:</strong> What does the presale rate mean?<br>
+        <strong>A:</strong> The site uses USD→token rate (USD_TO_TOKEN) to calculate virtual allocation. Example: USD_TO_TOKEN = 100 => $1 = 100 BOBGRL.<br><br>
+
+        <strong>Q:</strong> Is my purchase guaranteed to receive tokens?<br>
+        <strong>A:</strong> Contributions are recorded for allocation. The token launch and airdrop are planned but dependent on final launch execution; contribute only what you can afford to lose.
+      </div>
+    </section>
+
+    <footer>
+      <div class="muted">© <span id="year"></span> BOBGRL • Not financial advice • Use at your own risk</div>
+    </footer>
+  </div>
+
+  <!-- Solana web3 (IIFE build) -->
+  <script src="https://unpkg.com/@solana/web3.js@1.80.0/lib/index.iife.min.js"></script>
+
+  <script>
+  /***** CONFIG - set these before going live *****/
+  const TREASURY_WALLET = "ERGRYbUdR2ARJ5LapoztQzHt5qQPtfxuKsT23q3U7Aju"; // <-- replace
+  const USD_TO_TOKEN = 100;     // $1 => 100 BOBGRL
+  const MIN_USD = 1;
+
+  /***** State (local storage backed) *****/
+  const localState = {
+    usd: parseFloat(localStorage.getItem('bobgrl_usd') || '0'),
+    tokens: parseFloat(localStorage.getItem('bobgrl_tokens') || '0'),
+    sol: parseFloat(localStorage.getItem('bobgrl_sol') || '0'),
+    addr: localStorage.getItem('bobgrl_addr') || ''
+  };
+
+  // UI refs
+  const priceInfo = document.getElementById('priceInfo');
+  const conv = document.getElementById('conv');
+  const statusEl = document.getElementById('status');
+  const holdTokens = document.getElementById('holdTokens');
+  const holdUsd = document.getElementById('holdUsd');
+  const holdSol = document.getElementById('holdSol');
+  const buyBtn = document.getElementById('buyBtn');
+  const saveAddrBtn = document.getElementById('saveAddrBtn');
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('addr').value = localState.addr || '';
+
+  function updateHoldingsUI(){
+    holdTokens.textContent = Number(localState.tokens || 0).toLocaleString();
+    holdUsd.textContent = (Number(localState.usd || 0)).toLocaleString(undefined, {style:'currency', currency:'USD'});
+    holdSol.textContent = Number(localState.sol || 0).toFixed(6);
+  }
+  updateHoldingsUI();
+
+  function saveLocal(){
+    localStorage.setItem('bobgrl_usd', localState.usd);
+    localStorage.setItem('bobgrl_tokens', localState.tokens);
+    localStorage.setItem('bobgrl_sol', localState.sol);
+    if(localState.addr) localStorage.setItem('bobgrl_addr', localState.addr);
+  }
+
+  // Fetch live SOL price
+  let solPriceUSD = null;
+  async function fetchSolPrice(){
+    try {
+      const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd');
+      const data = await r.json();
+      solPriceUSD = data.solana.usd;
+      priceInfo.textContent = `SOL: ${solPriceUSD.toLocaleString(undefined,{style:'currency',currency:'USD'})}`;
+    } catch (e) {
+      solPriceUSD = null;
+      priceInfo.textContent = 'Failed to fetch SOL price (using manual conversion)';
+      console.error('price fetch error', e);
+    }
+  }
+  fetchSolPrice();
+
+  // Utility
+  function setStatus(t, cls){
+    statusEl.textContent = t;
+    statusEl.className = cls || '';
+  }
+
+  // Save address locally
+  saveAddrBtn.addEventListener('click', () => {
+    const v = document.getElementById('addr').value.trim();
+    if(!v){ alert('Enter a Solana address to save'); return; }
+    localState.addr = v;
+    saveLocal();
+    alert('Address saved locally for airdrop exports.');
+  });
+
+  // Main buy flow using Phantom + solana web3
+  buyBtn.addEventListener('click', async () => {
+    const usdRaw = Number(document.getElementById('usd').value);
+    if(!usdRaw || usdRaw < MIN_USD){
+      alert(`Please enter at least $${MIN_USD}`);
+      return;
+    }
+    if(!window.solana || !window.solana.isPhantom){
+      alert('Phantom wallet not detected. Please install Phantom extension and try again.');
+      return;
+    }
+    setStatus('Preparing transaction...', 'muted');
+    buyBtn.disabled = true;
+
+    try {
+      // Ensure we have price
+      if(!solPriceUSD) await fetchSolPrice();
+      if(!solPriceUSD){
+        throw new Error('Could not fetch SOL price. Try again later.');
+      }
+
+      const solAmount = usdRaw / solPriceUSD;
+      conv.textContent = `${usdRaw.toFixed(2)} USD ≈ ${solAmount.toFixed(6)} SOL`;
+
+      // Connect to Phantom (if not already)
+      setStatus('Connecting to Phantom...');
+      const provider = window.solana;
+      // connect() will prompt user to connect if needed
+      const resp = await provider.connect();
+      // provider.publicKey is available now
+      const fromPubkey = provider.publicKey;
+      setStatus('Building transaction...');
+
+      // Setup connection
+      const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+
+      // Calculate lamports
+      const lamports = Math.round(solAmount * solanaWeb3.LAMPORTS_PER_SOL);
+
+      // Get latest blockhash info for valid tx
+      const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+
+      // Build transfer transaction
+      const tx = new solanaWeb3.Transaction({
+        recentBlockhash: blockhash,
+        feePayer: fromPubkey
+      });
+
+      tx.add(
+        solanaWeb3.SystemProgram.transfer({
+          fromPubkey,
+          toPubkey: new solanaWeb3.PublicKey(TREASURY_WALLET),
+          lamports
+        })
+      );
+
+      // Let Phantom sign
+      setStatus('Requesting signature in Phantom...');
+      const signedTx = await provider.signTransaction(tx); // user will see Phantom popup to sign
+      setStatus('Sending transaction to network...');
+
+      const raw = signedTx.serialize();
+      const sig = await connection.sendRawTransaction(raw);
+
+      setStatus('Awaiting confirmation (this can take a few seconds)...');
+
+      // Confirm the transaction (use blockhash + lastValidBlockHeight)
+      await connection.confirmTransaction({ signature: sig, blockhash, lastValidBlockHeight }, 'finalized');
+
+      // Success — update holdings now
+      const tokens = usdRaw * USD_TO_TOKEN;
+      localState.usd += usdRaw;
+      localState.tokens += tokens;
+      localState.sol += solAmount;
+      saveLocal();
+      updateHoldingsUI();
+
+      setStatus(`Transaction confirmed: ${sig}`, 'success');
+      // show final conversion
+      conv.textContent = `${usdRaw.toFixed(2)} USD → ${solAmount.toFixed(6)} SOL → ${tokens.toLocaleString()} BOBGRL (recorded)`;
+
+    } catch (err) {
+      console.error(err);
+      // If user rejected signature or tx failed, do not update holdings
+      if(err && err.message && err.message.includes('User rejected') ) {
+        setStatus('Transaction cancelled by user.', 'error');
+        alert('You cancelled the transaction. No holdings were recorded.');
+      } else {
+        setStatus('Transaction failed or timed out. No holdings recorded.', 'error');
+        alert('Error: ' + (err.message || String(err)));
+      }
+    } finally {
+      buyBtn.disabled = false;
+    }
+  });
+  </script>
+</body>
+</html>
+
